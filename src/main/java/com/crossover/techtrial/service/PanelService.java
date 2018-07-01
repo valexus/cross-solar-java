@@ -1,5 +1,7 @@
 package com.crossover.techtrial.service;
 
+import java.util.List;
+
 import com.crossover.techtrial.model.Panel;
 
 /**
@@ -17,4 +19,6 @@ public interface PanelService {
   void register(Panel panel);
   
   Panel findBySerial(String serial);
+  
+  List<Panel> findAll();
 }

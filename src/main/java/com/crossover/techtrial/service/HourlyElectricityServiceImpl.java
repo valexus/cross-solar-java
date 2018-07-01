@@ -3,6 +3,8 @@ package com.crossover.techtrial.service;
 import com.crossover.techtrial.model.HourlyElectricity;
 import com.crossover.techtrial.repository.HourlyElectricityRepository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,15 +19,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class HourlyElectricityServiceImpl implements HourlyElectricityService {
-  @Autowired
-  HourlyElectricityRepository hourlyElectricityRepository;
-  
-  public HourlyElectricity save(HourlyElectricity hourlyElectricity) {
-    return hourlyElectricityRepository.save(hourlyElectricity);
-  }
-  
-  public Page<HourlyElectricity> getAllHourlyElectricityByPanelId(Long panelId, Pageable pageable) {
-    return hourlyElectricityRepository.findAllByPanelIdOrderByReadingAtDesc(panelId, pageable);
-  }
+	@Autowired
+	HourlyElectricityRepository hourlyElectricityRepository;	
+	
+	public HourlyElectricity save(HourlyElectricity hourlyElectricity) {
+		return hourlyElectricityRepository.save(hourlyElectricity);
+	}
+	
+	public Page<HourlyElectricity> getAllHourlyElectricityByPanelId(Long panelId, Pageable pageable) {
+		return hourlyElectricityRepository.findAllByPanelIdOrderByReadingAtDesc(panelId, pageable);
+	}
+
+	@Override
+	public List<HourlyElectricity> getAllHourlyElectricityByPanelId(Long panelId) {
+		return hourlyElectricityRepository.findAllByPanelId(panelId);
+	}
   
 }

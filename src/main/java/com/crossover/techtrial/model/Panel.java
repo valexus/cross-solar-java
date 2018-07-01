@@ -6,9 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.springframework.lang.Nullable;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * Panel class hold information related to a Solar panel.
@@ -18,6 +22,8 @@ import org.springframework.lang.Nullable;
  */
 @Entity
 @Table(name = "panel")
+@NamedQuery(name="Panel.findAll", query="SELECT p FROM Panel p")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Panel implements Serializable {
 
   private static final long serialVersionUID = -8527695980909864257L;
